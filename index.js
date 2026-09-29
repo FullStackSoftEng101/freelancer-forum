@@ -25,7 +25,6 @@ function makeFreelancer() {
 function sample(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
-//const freelancers =
 const freelancers = [];
 for (let i = 0; i < NUM_FREELANCERS; i++) {
   const freelancer = makeFreelancer();
