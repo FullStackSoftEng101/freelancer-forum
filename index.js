@@ -35,7 +35,25 @@ function sample(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 // === Components ===
+/**
+ * // We can destructure an object directly in the function's parameters!
+ */
 
+function FreelancerRow({ name, occupation, rate }) {
+  const $tr = document.createElement("tr");
+  $tr.innerHTML = `
+    <td>${name}</td>
+    <td>${occupation}</td>
+    <td>${rate}</td>
+    `;
+  return $tr;
+}
+function FreelancerRows() {
+  const $tbody = document.createElement("tbody");
+  const $freelancers = freelancers.map(FreelancerRow);
+  $tbody.replaceChildren(...$freelancers);
+  return $tbody;
+}
 // === Render ===
 /**
  *  // <table>s eject "fake" elements, which is why we need to use
@@ -48,7 +66,7 @@ function render() {
   const $app = document.querySelector("#app");
 
   $app.innerHTML = `
-  <h1></h1>
+  <h1>Freelancer Forum</h1>
   <AverageRate></AverageRate>
   <table><thead>
   <tr>
@@ -57,9 +75,10 @@ function render() {
   <th>Rate</th>
   </tr>
   </thead>
-  <tbody id=FreelancerRows></tbody>
+  <tbody id="FreelancerRows"></tbody>
   </table>
   `;
+
+  $app.querySelector("#FreelancerRows").replaceWith(FreelancerRows());
 }
-$app.querySelector("#FreelancerRows").replaceWith(FreelancerRow());
 render();
