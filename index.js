@@ -12,6 +12,9 @@ const PRICE_RANGE = { min: 20, max: 200 };
 const NUM_FREELANCERS = 100;
 // === State ===
 
+/**
+ * @returns {Freelancer} a freelancer with random name, ocuppation and rate
+ */
 function makeFreelancer() {
   const nameIndex = Math.floor(Math.random() * NAMES.length);
   const name = NAMES[nameIndex];
@@ -22,19 +25,15 @@ function makeFreelancer() {
   return { name, occupation, rate };
 }
 
-function sample(array) {
-  return array[Math.floor(Math.random() * array.length)];
-}
 const freelancers = [];
 for (let i = 0; i < NUM_FREELANCERS; i++) {
   const freelancer = makeFreelancer();
   freelancers.push(freelancer);
 }
 
-/**
- * @returns {Freelancer} a freelancer with random name, ocuppation and rate
- */
-
+function sample(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
 // === Components ===
 
 // === Render ===
@@ -58,9 +57,9 @@ function render() {
   <th>Rate</th>
   </tr>
   </thead>
-  <tbody>
+  <tbody id=FreelancerRows></tbody>
   </table>
   `;
 }
-
+$app.querySelector("#FreelancerRows").replaceWith(FreelancerRow());
 render();
